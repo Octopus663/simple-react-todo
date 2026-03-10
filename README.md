@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+# React Redux Task Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, scalable task management application built with **React 19**, **Redux Toolkit**, and **TypeScript**. This project demonstrates modern front-end architectural patterns, centralized state management, and strict type safety.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## Core Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Task Lifecycle Management**: Complete CRUD functionality (Create, Read, Update, Delete).
+* **Inline Editing**: Real-time task modification with local state synchronization.
+* **Centralized State Management**: Leveraging Redux Toolkit for predictable state transitions and immutable updates via Immer.
+* **Dynamic Filtering**: Advanced task sorting by status (All, Active, Completed).
+* **Strict Type Safety**: Comprehensive TypeScript implementation for interfaces, actions, and store hooks.
+* **Performance Optimization**: Efficient rendering utilizing React's reconciliation algorithm.
 
-## Expanding the ESLint configuration
+##  Technical Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Core**: [React](https://reactjs.org/) (Functional Components, Hooks)
+* **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) (Slices, Typed Hooks)
+* **Language**: [TypeScript](https://www.typescriptlang.org/)
+* **Build Tool**: [Vite](https://vitejs.dev/)
+* **Development Environment**: ESLint, HMR (Hot Module Replacement)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Architectural Overview
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+The application follows a modular structure to ensure maintainability and separation of concerns:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* **/src/store**: Contains the Redux store configuration and domain-specific slices (e.g., `todoSlice`).
+* **/src/components**: Separated into "Smart" (Container) and "Dumb" (Presentational) components to decouple business logic from the UI.
+* **/src/types**: Centralized TypeScript definitions and interfaces for application-wide consistency.
+
+
+
+## Installation and Setup
+
+### Prerequisites
+* Node.js (LTS version)
+* npm or yarn
+
+### Local Development
+1. Clone the repository.
+2. Install dependencies:
+```bash
+   npm install
+```
+3. Start the development server:
+```bash
+   npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Production Build
+To generate an optimized production bundle:
+```bash
+npm run build
 ```
+To preview the production build locally:
+```bash
+npm run preview
+```
+
+##  Technical Implementation Details
+
+* **Asynchronous Patterns**: Implementation explores the JavaScript Event Loop, prioritizing Microtask (Promises) over Macrotask (setTimeout) queues.
+* **Immutability**: Utilizes Redux Toolkit’s internal integration with Immer to maintain state integrity.
+* **Scoped Logic**: Encapsulation of side effects and business logic within Redux Slices to ensure a clean component layer.
+
